@@ -4,7 +4,7 @@ from flask import Flask, request
 app = Flask(__name__)
 
 TOKEN = "7706875882:AAH5o7WQFV1mxLpt6TikdploTOr966dala8"
-CHAT_ID = "7689242465"  # Το δικό σου user ID
+CHAT_ID = "-4738149585"  # Το δικό σου user ID
 
 @app.route('/')
 def home():
