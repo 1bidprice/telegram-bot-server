@@ -13,15 +13,18 @@ def home():
 @app.route('/webhook', methods=['POST'])
 def webhook():
     data = request.json
-    message = data.get("message", {}).get("text", "")
+    message = data.get("message", {}).get("text")
+    chat_id = data.get("message", {}).get("chat", {}).get("id")
+
     if message:
-        send_message(f"Έλαβε μήνυμα: {message}")
+        response = f"Έλαβα το μήνυμα: {message}"
+        send_message(response, chat_id)
     return {"status": "received"}
 
-def send_message(text):
+def send_message(text, chat_id):
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
     payload = {
-        "chat_id": CHAT_ID,
+        "chat_id": chat_id,
         "text": text
     }
     requests.post(url, json=payload)
