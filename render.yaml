@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: telegram-bot-server
+    runtime: python
+    repo: https://github.com/1bidprice/telegram-bot-server
+    plan: free
+    envVars:
+      - key: TOKEN
+        sync: false
+      - key: CHAT_ID
+        sync: false
+    buildCommand: |
+      pip install -r requirements.txt
+    startCommand: |
+      python main.py
+    healthCheckPath: /
+    region: oregon
+    autoDeploy: true
