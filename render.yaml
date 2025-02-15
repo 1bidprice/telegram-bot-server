@@ -1,14 +1,18 @@
 services:
   - type: web
     name: telegram-bot-server
-    env: python
-    region: oregon
-    buildCommand: pip install -r requirements.txt
-    startCommand: python app.py
+    runtime: python
+    repo: https://github.com/1bidprice/telegram-bot-server
     plan: free
     envVars:
       - key: TOKEN
-        value: "7706875882:AAH5o7WQFV1mxLpt6TikdploTOr966dala8"
+        sync: false
       - key: CHAT_ID
-        value: "7689242465"
+        sync: false
+    buildCommand: |
+      pip install -r requirements.txt
+    startCommand: |
+      python main.py
+    healthCheckPath: /
+    region: oregon
     autoDeploy: true
